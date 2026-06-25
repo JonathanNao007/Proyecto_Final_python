@@ -39,11 +39,13 @@ class BaseDatos:
         with self.getConnection() as conn:
             conn.execute("""
                         Create Table Pedido (
-                            pedido int AUTO_INCREMENT PRIMARY KEY, 
+                            id int AUTO_INCREMENT PRIMARY KEY, 
+                            pedido int Not Null,
                             cliente int Not Null,
                             producto int Not Null, 
                             precio decimal(10,2) Not Null,
                             fecha datetime,
+                            cancelado bit Not Null Default(0),
                             FOREIGN KEY (cliente) REFERENCES Clientes(clave),
                             FOREIGN KEY (producto) REFERENCES Menu(clave));
                         """)
