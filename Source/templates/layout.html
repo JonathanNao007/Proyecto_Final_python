@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyBurguer - Pedidos</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome (para iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <!-- ===== HEADER ===== -->
+        <div class="page-header">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <div>
+                    <h1 class="mb-0">
+                        HappyBurguer
+                        <small><i class="fas fa-hamburger ms-2"></i></small>
+                    </h1>
+                    <p class="subtitle mb-0">
+                        <i class="fas fa-clipboard-list me-2"></i>Panel de Pedidos
+                    </p>
+                </div>
+                <div class="d-flex gap-2 mt-2 mt-sm-0">
+                    <!-- Botón Menú -->
+                    <button class="btn btn-outline-danger" onclick="mostrarSeccion('menu')" id="btnMenu">
+                        <i class="fas fa-utensils me-1"></i> Menú
+                    </button>
+                    <!-- Botón Clientes -->
+                    <button class="btn btn-outline-primary" onclick="mostrarSeccion('clientes')" id="btnClientes">
+                        <i class="fas fa-users me-1"></i> Clientes
+                    </button>
+                    <!-- Botón Pedidos (activo por defecto) -->
+                    <button class="btn btn-danger" onclick="mostrarSeccion('pedidos')" id="btnPedidos">
+                        <i class="fas fa-clipboard-list me-1"></i> Pedidos
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- ==========Prueba de Main para Lauout -->
+        <main>
+            {% block contenido %}{% endblock %}
+        </main>
+        <!-- ===== FOOTER ===== -->
+        <div class="text-center mt-4 text-muted" style="font-size: 0.85rem;">
+            <p class="mb-0">
+                <i class="fas fa-copyright me-1"></i> 2024 HappyBurguer - Sistema de Gestión de Pedidos
+            </p>
+        </div>
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script para mostrar hora actual -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function actualizarHora() {
+                const ahora = new Date();
+                const opciones = { 
+                    year: 'numeric', 
+                    month: '2-digit', 
+                    day: '2-digit',
+                    hour: '2-digit', 
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                };
+                document.getElementById('hora-actual').textContent = 
+                    ahora.toLocaleDateString('es-ES', opciones);
+            }
+            actualizarHora();
+            setInterval(actualizarHora, 1000);
+        });
+    </script>
+</body>
+</html>

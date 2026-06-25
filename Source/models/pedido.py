@@ -7,16 +7,37 @@ class Pedido:
     # Crud basico
     def obtener(self):
         with self.db.getConnection() as conn:
-            return conn.execute("Select * From Pedido").fetchall()
+            return conn.execute("""Select 
+                                    p.pedido,
+                                    c.nombre As cliente,
+                                    p.precio,
+                                    p.fecha,
+                                    p.cancelado
+                                    From Pedido p 
+                                    join Clientes c on p.cliente = c.clave
+                                    GROUP By p.pedido, c.nombre, p.precio, p.fecha""").fetchall()
         
     def obtener_id(self, clavePedido):
         with self.db.getConnection() as conn:
-            return conn.execute("Select * From Pedido Where pedido = ?", (clavePedido)).fetchone()
+            return conn.execute("""Select 
+                                    p.id,
+                                    p.pedido,
+                                    c.clave As claveCliente,
+                                    c.nombre As cliente,
+                                    m.clave As claveProducto,
+                                    m.nombre As producto,
+                                    p.precio,
+                                    p.fecha,
+                                    p.cancelado
+                                    From Pedido p 
+                                    Join Menu m On p.producto = m.clave
+                                    join Clientes c on p.cliente = c.clave
+                                    Where p.pedido = ?""", (clavePedido)).fetchall()
     
     def crear(self, pedido, cliente, producto, precio, fecha, cancelado):
         with self.db.get_connection() as conn:
             cursor = conn.execute(
-                "Insert Into Pedido(pedido, cliente, producto, precio, fecha, cancelado) Values(?,?,?,?,?,0)", (nombre, direccion, correo_electronico, telefono)
+                "Insert Into Pedido(pedido, cliente, producto, precio, fecha, cancelado) Values(?,?,?,?,?,0)", (pedido, cliente, producto, precio, fecha, cancelado)
             )
             conn.commit()
             return cursor.lastrowid

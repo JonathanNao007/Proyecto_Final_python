@@ -1,0 +1,217 @@
+/* ============================================
+   ESTILOS PERSONALIZADOS PARA HAPPYBURGUER
+   ============================================ */
+
+/* 1. RESET Y BASE */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 2. CONTENEDOR PRINCIPAL */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 15px;
+}
+
+/* 3. HEADER DE LA PÁGINA */
+.page-header {
+    text-align: center;
+    padding: 30px 0 20px 0;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #e9ecef;
+    position: relative;
+}
+
+.page-header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #d32f2f;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 5px;
+}
+
+.page-header h1 small {
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: #6c757d;
+}
+
+.page-header .subtitle {
+    color: #6c757d;
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+/* 4. TARJETA DEL PEDIDO (card wrapper) */
+.pedidos-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 25px 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease;
+    overflow-x: auto;
+}
+
+.pedidos-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* 5. TABLA */
+.table-pedidos {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    min-width: 700px;
+}
+
+.table-pedidos thead th {
+    background-color: #d32f2f;
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    padding: 14px 12px;
+    border-bottom: none;
+    white-space: nowrap;
+}
+
+.table-pedidos tbody td {
+    padding: 14px 12px;
+    vertical-align: middle;
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.table-pedidos tbody tr:hover {
+    background-color: #fff5f5;
+}
+
+/* 6. BADGES / ESTADOS */
+.badge-cancelado {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge-activo {
+    background-color: #28a745;
+    color: #fff;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* 7. BOTONES DE ACCIÓN */
+.btn-detalle {
+    background: none;
+    border: 1px solid #ced4da;
+    color: #495057;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.btn-detalle:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.btn-cancelar {
+    background: none;
+    border: 1px solid #dc3545;
+    color: #dc3545;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.btn-cancelar:hover {
+    background: #dc3545;
+    color: #fff;
+}
+
+/* 8. MENSAJE CUANDO NO HAY PEDIDOS */
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: #6c757d;
+}
+
+.empty-state .icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+/* 9. RESPONSIVE */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .page-header h1 small {
+        font-size: 1.3rem;
+        display: block;
+    }
+    
+    .pedidos-card {
+        padding: 15px 12px;
+        border-radius: 12px;
+    }
+
+    .table-pedidos {
+        font-size: 0.85rem;
+        min-width: 600px;
+    }
+
+    .table-pedidos thead th,
+    .table-pedidos tbody td {
+        padding: 10px 8px;
+    }
+
+    .btn-detalle,
+    .btn-cancelar {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+    }
+
+    .badge-cancelado,
+    .badge-activo {
+        padding: 3px 10px;
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .page-header .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .pedidos-card {
+        padding: 10px 8px;
+    }
+
+    .table-pedidos {
+        font-size: 0.8rem;
+        min-width: 500px;
+    }
+
+    .table-pedidos thead th,
+    .table-pedidos tbody td {
+        padding: 8px 6px;
+    }
+}
