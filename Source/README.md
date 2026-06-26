@@ -10,3 +10,9 @@ venv\Scripts\activate
 
 # Instalacion de dependencias, solo en caso de ser necesario(*pip freeze > requirements.txt)
 pip install -r requirements.txt
+
+# Ejecucion dentro del la carpeta Source
+# Para desarrollo y tener hotreload
+flask run --debug
+# Para ejecucion normal
+flask run 
