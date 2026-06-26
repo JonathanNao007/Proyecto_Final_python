@@ -30,17 +30,23 @@
                 </div>
                 <div class="d-flex gap-2 mt-2 mt-sm-0">
                     <!-- Botón Menú -->
-                    <button class="btn btn-outline-danger" onclick="mostrarSeccion('menu')" id="btnMenu">
-                        <i class="fas fa-utensils me-1"></i> Menú
-                    </button>
+                    <a href="{{url_for('menu.listar_menu')}}">
+                        <button class="btn btn-outline-danger" id="btnMenu">
+                            <i class="fas fa-utensils me-1"></i> Menú
+                        </button>
+                    </a>                    
                     <!-- Botón Clientes -->
-                    <button class="btn btn-outline-primary" onclick="mostrarSeccion('clientes')" id="btnClientes">
-                        <i class="fas fa-users me-1"></i> Clientes
-                    </button>
+                    <a href="{{url_for('clientes.listar_clientes')}}">
+                        <button class="btn btn-outline-primary" id="btnClientes">
+                            <i class="fas fa-users me-1"></i> Clientes
+                        </button>
+                    </a>                    
                     <!-- Botón Pedidos (activo por defecto) -->
-                    <button class="btn btn-danger" onclick="mostrarSeccion('pedidos')" id="btnPedidos">
-                        <i class="fas fa-clipboard-list me-1"></i> Pedidos
-                    </button>
+                     <a href="{{url_for('pedidos.listar_pedidos')}}">
+                        <button class="btn btn-danger" id="btnPedidos">
+                            <i class="fas fa-clipboard-list me-1"></i> Pedidos
+                        </button>
+                     </a>                    
                 </div>
             </div>
         </div>
@@ -51,7 +57,7 @@
         <!-- ===== FOOTER ===== -->
         <div class="text-center mt-4 text-muted" style="font-size: 0.85rem;">
             <p class="mb-0">
-                <i class="fas fa-copyright me-1"></i> 2024 HappyBurguer - Sistema de Gestión de Pedidos
+                <i class="fas fa-copyright me-1"></i> <span id="year"></span> HappyBurguer - Sistema de Gestión de Pedidos
             </p>
         </div>
     </div>
@@ -79,6 +85,7 @@
             }
             actualizarHora();
             setInterval(actualizarHora, 1000);
+            document.getElementById("year").textContent = new Date().getFullYear();
         });
     </script>
 </body>

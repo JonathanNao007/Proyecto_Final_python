@@ -32,10 +32,10 @@ class Pedido:
                                     From Pedido p 
                                     Join Menu m On p.producto = m.clave
                                     join Clientes c on p.cliente = c.clave
-                                    Where p.pedido = ?""", (clavePedido)).fetchall()
+                                    Where p.pedido = ?""", (clavePedido,)).fetchall()
     
     def crear(self, pedido, cliente, producto, precio, fecha, cancelado):
-        with self.db.get_connection() as conn:
+        with self.db.getConnection() as conn:
             cursor = conn.execute(
                 "Insert Into Pedido(pedido, cliente, producto, precio, fecha, cancelado) Values(?,?,?,?,?,0)", (pedido, cliente, producto, precio, fecha, cancelado)
             )
@@ -43,8 +43,8 @@ class Pedido:
             return cursor.lastrowid
         
     def cancelar(self, pedido):
-        with self.db.get_connection() as conn:
+        with self.db.getConnection() as conn:
             conn.execute(
-                "Update Pedido Set cancelado = 1 Where pedido = ?;", (pedido)
+                "Update Pedido Set cancelado = 1 Where pedido = ?;", (pedido,)
             )
             conn.commit()

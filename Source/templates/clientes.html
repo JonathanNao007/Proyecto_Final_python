@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+
+{% block contenido %}
+    <div class="clientes-card">
+            <!-- Encabezado de la tabla con contador -->
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+                <h5 class="mb-0">
+                    <i class="fas fa-user me-2 text-danger"></i>
+                    Lista de Clientes
+                </h5>
+                <span class="badge bg-secondary rounded-pill px-3 py-2">
+                    <i class="fas fa-hashtag me-1"></i> {{ clientes|length }} clientes
+                </span>
+            </div>
+
+            <!-- Tabla responsiva -->
+            <div class="table-responsive">
+                <table class="table table-clientes table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-hashtag me-1"></i> Cliente</th>
+                            <th><i class="fas fa-user me-1"></i> Nombre</th>
+                            <th><i class="fas fa-calendar-alt me-1"></i> Dirección</th>
+                            <th><i class="fas fa-info-circle me-1"></i> Mail</th>
+                            <th><i class="fas fa-info-circle me-1"></i> Telefono</th>
+                            <th class="text-center"><i class="fas fa-ellipsis-v me-1"></i> Editar</th>
+                            <th class="text-center"><i class="fas fa-times me-1"></i> Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in clientes %}
+                            <tr>
+                                <td><span class="fw-bold text-danger">#{{ c[0] }}</span></td>
+                                <td><i class="fas fa-user-circle me-2 text-secondary"></i>{{ c[1] }}</td>
+                                <td><span class="badge-activo"><i class="fas fa-check-circle me-1"></i> {{ c[2] }}</span></td>
+                                <td><span class="badge-activo"><i class="fas fa-check-circle me-1"></i> {{ c[3] }}</span></td>
+                                <td><span class="badge-activo"><i class="fas fa-check-circle me-1"></i> {{ c[4] }}</span></td>
+                                <td class="text-center">
+                                    <a href="{{url_for('clientes.agrega_edita_clientes', cliente_id=c[0])}}">
+                                        <button class="btn-detalle" title="Editar cliente">
+                                            <i class="fas fa-eye me-1"></i> Editar
+                                        </button>
+                                    </a>                                    
+                                </td>
+                                <td class="text-center">
+                                    <form action="{{ url_for('clientes.elimina_cliente', cliente_id=c[0]) }}" method="POST" style="display:inline;">
+                                        <button class="btn-cancelar" type="submit" title="Eliminar cliente">
+                                            <i class="fas fa-times me-1"></i> Eliminar
+                                        </button>
+                                    </form>                                    
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- Pie de tabla con información -->
+            <div class="d-flex justify-content-center align-items-center mt-3 pt-3 border-top flex-wrap">
+                <!-- Botón Crear Cliente -->
+                <a href="{{url_for('clientes.agrega_edita_clientes', cliente_id=0)}}">
+                    <button class="btn btn-outline-primary" id="btnMenu">
+                        <i class="fas fa-user me-1"></i> Agregar cliente
+                    </button>
+                </a>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top flex-wrap">
+                <small class="text-muted">
+                    <i class="fas fa-info-circle me-1"></i>
+                    Mostrando <strong>{{ clientes|length }}</strong> clientes
+                </small>
+                <small class="text-muted">
+                    <i class="fas fa-clock me-1"></i>
+                    Última actualización: <span id="hora-actual"></span>
+                </small>
+            </div>            
+        </div>
+{% endblock %}

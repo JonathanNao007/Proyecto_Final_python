@@ -46,7 +46,7 @@ body {
 }
 
 /* 4. TARJETA DEL PEDIDO (card wrapper) */
-.pedidos-card {
+.pedidos-card .clientes-card, .menu-card {
     background: #ffffff;
     border-radius: 16px;
     padding: 25px 20px;
@@ -55,12 +55,12 @@ body {
     overflow-x: auto;
 }
 
-.pedidos-card:hover {
+.pedidos-card:hover, .clientes-card:hover, .menu-card:hover {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
 /* 5. TABLA */
-.table-pedidos {
+.table-pedidos, .table-clientes, .table-menu {
     margin-bottom: 0;
     font-size: 0.95rem;
     min-width: 700px;

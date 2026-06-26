@@ -11,10 +11,10 @@ class Menu:
         
     def obtener_id(self, claveMenu):
         with self.db.getConnection() as conn:
-            return conn.execute("Select * From Menu Where clave = ?", (claveMenu)).fetchone()
+            return conn.execute("Select * From Menu Where clave = ?", (claveMenu,)).fetchone()
     
     def crear(self, nombre, precio):
-        with self.db.get_connection() as conn:
+        with self.db.getConnection() as conn:
             cursor = conn.execute(
                 "Insert Into Menu(nombre, precio) Values(?,?)", (nombre, precio)
             )
@@ -22,15 +22,15 @@ class Menu:
             return cursor.lastrowid
         
     def actualizar(self, nombre, precio, claveMenu):
-        with self.db.get_connection() as conn:
+        with self.db.getConnection() as conn:
             conn.execute(
                 "Update Menu Set nombre = ?, precio = ? Where clave = ?", (nombre, precio, claveMenu)
             )
             conn.commit()
 
     def eliminar(self, claveMenu):
-        with self.db.get_connection() as conn:
+        with self.db.getConnection() as conn:
             conn.execute(
-                "Delete From Menu Where clave = ?", (claveMenu)
+                "Delete From Menu Where clave = ?", (claveMenu,)
             )
             conn.commit()
