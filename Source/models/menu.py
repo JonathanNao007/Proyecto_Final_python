@@ -9,6 +9,10 @@ class Menu:
         with self.db.getConnection() as conn:
             return conn.execute("Select * From Menu").fetchall()
         
+    def obtener_info_select(self):
+        with self.db.getConnection() as conn:
+            return conn.execute("Select clave, nombre From Menu;").fetchall()
+        
     def obtener_id(self, claveMenu):
         with self.db.getConnection() as conn:
             return conn.execute("Select * From Menu Where clave = ?", (claveMenu,)).fetchone()

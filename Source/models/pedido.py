@@ -5,6 +5,10 @@ class Pedido:
         self.db = BaseDatos(db_name)
 
     # Crud basico
+    def obtener_pedido_id(self):
+        with self.db.getConnection() as conn:
+            return conn.execute("""Select COALESCE(Max(pedido),0) + 1 As pedido From Pedido order By pedido desc Limit 1""").fetchone()
+
     def obtener(self):
         with self.db.getConnection() as conn:
             return conn.execute("""Select 
@@ -37,7 +41,7 @@ class Pedido:
     def crear(self, pedido, cliente, producto, precio, fecha, cancelado):
         with self.db.getConnection() as conn:
             cursor = conn.execute(
-                "Insert Into Pedido(pedido, cliente, producto, precio, fecha, cancelado) Values(?,?,?,?,?,0)", (pedido, cliente, producto, precio, fecha, cancelado)
+                "Insert Into Pedido(pedido, cliente, producto, precio, fecha, cancelado) Values(?,?,?,?,?,?)", (pedido, cliente, producto, precio, fecha, cancelado)
             )
             conn.commit()
             return cursor.lastrowid

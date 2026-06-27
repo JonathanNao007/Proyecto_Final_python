@@ -8,6 +8,10 @@ class Cliente:
     def obtener(self):
         with self.db.getConnection() as conn:
             return conn.execute("Select * From Clientes").fetchall()
+    
+    def obtener_info_select(self):
+        with self.db.getConnection() as conn:
+            return conn.execute("Select clave, nombre From Clientes;").fetchall()
         
     def obtener_id(self, claveCliente):
         with self.db.getConnection() as conn:

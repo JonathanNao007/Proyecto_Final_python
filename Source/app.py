@@ -5,7 +5,6 @@ from routes.clientes import cliente_bp
 from routes.menu import menu_bp
 
 app = Flask(__name__)
-# app.secret_key = "S3cur3tyP4@55W0rd@"
 
 app.register_blueprint(pedido_bp)
 app.register_blueprint(cliente_bp)

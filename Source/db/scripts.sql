@@ -23,3 +23,6 @@ Create Table Pedido (
     FOREIGN KEY (cliente) REFERENCES Clientes(clave),
     FOREIGN KEY (producto) REFERENCES Menu(clave)
 );
+
+-- Generacion de identificador de pedido********************
+Select COALESCE(Max(pedido),0) + 1 As pedido From Pedido order By pedido desc Limit 1

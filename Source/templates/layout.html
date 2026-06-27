@@ -31,7 +31,7 @@
                 <div class="d-flex gap-2 mt-2 mt-sm-0">
                     <!-- Botón Menú -->
                     <a href="{{url_for('menu.listar_menu')}}">
-                        <button class="btn btn-outline-danger" id="btnMenu">
+                        <button class="btn btn-outline-secondary" id="btnMenu">
                             <i class="fas fa-utensils me-1"></i> Menú
                         </button>
                     </a>                    
@@ -80,8 +80,7 @@
                     second: '2-digit',
                     hour12: false
                 };
-                document.getElementById('hora-actual').textContent = 
-                    ahora.toLocaleDateString('es-ES', opciones);
+                document.getElementById('hora-actual').textContent = ahora.toLocaleDateString('es-ES', opciones);
             }
             actualizarHora();
             setInterval(actualizarHora, 1000);
