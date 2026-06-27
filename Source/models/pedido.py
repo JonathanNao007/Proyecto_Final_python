@@ -1,4 +1,5 @@
 from db.db import BaseDatos
+from flask import jsonify
 
 class Pedido:
     def __init__(self, db_name = 'db_proyect.sqlite'):
@@ -20,6 +21,21 @@ class Pedido:
                                     From Pedido p 
                                     join Clientes c on p.cliente = c.clave
                                     GROUP By p.pedido, c.nombre, p.precio, p.fecha""").fetchall()
+        
+    def obtener_json(self):
+        with self.db.getConnection() as conn:
+            data = conn.execute("""Select 
+                                    p.pedido,
+                                    c.nombre As cliente,
+                                    p.precio,
+                                    p.fecha,
+                                    p.cancelado
+                                    From Pedido p 
+                                    join Clientes c on p.cliente = c.clave
+                                    GROUP By p.pedido, c.nombre, p.precio, p.fecha""").fetchall()
+            headers = ['pedido', 'cliente', 'precio', 'fecha', 'cancelado']
+            json_data = [dict(zip(headers, row)) for row in data]
+            return jsonify(json_data)
         
     def obtener_id(self, clavePedido):
         with self.db.getConnection() as conn:

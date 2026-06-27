@@ -150,10 +150,18 @@
         </div>
     </div>
     <script>
+        var dataProducto = {{ productos_json|tojson}};
+        const datajson = JSON.parse(JSON.stringify(dataProducto))
         document.addEventListener('DOMContentLoaded', function() {            
             const now = new Date();
             now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
             document.getElementById('fecha_pedido').value = now.toISOString().slice(0, 10);
+        });     
+        const selectElement = document.getElementById('producto_select');
+        const inputElement = document.getElementById('precio');   
+        selectElement.addEventListener('change', function() {
+            const valProduct = datajson.find(p=> p.clave === parseInt(this.value)) 
+            inputElement.value = valProduct.precio;
         });
     </script>
 {% endblock %}

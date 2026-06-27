@@ -1,4 +1,5 @@
 from db.db import BaseDatos
+from flask import jsonify
 
 class Menu:
     def __init__(self, db_name = 'db_proyect.sqlite'):
@@ -8,6 +9,13 @@ class Menu:
     def obtener(self):
         with self.db.getConnection() as conn:
             return conn.execute("Select * From Menu").fetchall()
+        
+    def obtener_json(self):
+        with self.db.getConnection() as conn:
+            data = conn.execute("Select clave, nombre, precio From Menu;").fetchall()
+            headers = ['clave', 'nombre', 'precio']
+            json_data = [dict(zip(headers, row)) for row in data]
+            return (json_data)
         
     def obtener_info_select(self):
         with self.db.getConnection() as conn:

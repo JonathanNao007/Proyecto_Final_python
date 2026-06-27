@@ -29,7 +29,9 @@ def agrega_pedido(pedido_id):
     clavePedido = pedido_id if pedido_id is not None and pedido_id >= 0 else 0
     clientes = cliente_model.obtener_info_select()
     productos = menu_model.obtener_info_select()
-    return render_template("pedido_add.html", pedido=pedido, API=api, accion = accion, clavePedido = clavePedido, dataClientes=clientes, dataProductos=productos)
+    productos_json = menu_model.obtener_json()
+    print(productos_json)
+    return render_template("pedido_add.html", pedido=pedido, API=api, accion = accion, clavePedido = clavePedido, dataClientes=clientes, dataProductos=productos, productos_json=productos_json)
 
 @pedido_bp.route("/pedido/nuevo", methods=["POST"])
 def crea_pedido():
